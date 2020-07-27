@@ -4,8 +4,8 @@ __pycache__/
 *$py.class
 
 # persional files
-tool/
-data/
+tool/*
+data/*
 
 # C extensions
 *.so
