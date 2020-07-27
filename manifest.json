@@ -1,29 +1,34 @@
 {
     "manifest_version": 2,
     "name": "SYSU NetID captcha recognization",
-    "version": "0.1",
-    "description": "This is a Chrome Extention for recognizing and filling the captcha in NetID website",
+    "version": "0.2",
+    "description": "This is a Chrome Extention for recognizing and filling the captcha in SYSU NetID website",
     "icons":
     {
-        "32": "icon.png"
+        "32": "img/icon.png"
     },
     "content_scripts":
     [
         {
             "matches": ["https://cas.sysu.edu.cn/*"],
-            "js": ["jquery-3.4.1.min.js", "main.js"],
+            "js": ["js/jquery-3.4.1.min.js", "js/onnx.min.js", "js/main.js"],
             "run_at": "document_start",
             "all_frame": true
         }
     ],
     "permissions": [
-        "tabs"
+        "tabs",
+        "storage"
     ],
-    "homepage_url": "https://github.com/Qjb8668",
+    "homepage_url": "https://github.com/Qjbtiger",
     "browser_action":
     {
-        "default_icon": "icon.png",
+        "default_icon": "img/icon.png",
         "default_title": "Hi!",
         "default_popup": "popup.html"
-    }
+    },
+
+    "web_accessible_resources": [
+        "model/*"
+    ]
 }
