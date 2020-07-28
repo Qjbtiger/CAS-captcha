@@ -6,6 +6,7 @@ __pycache__/
 # persional files
 tool/*
 data/*
+*.pem
 
 # C extensions
 *.so
