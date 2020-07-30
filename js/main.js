@@ -81,6 +81,9 @@ async function main() {
     // let the submit button enable
     submitButton = document.getElementsByName('submit')[0]
     submitButton.disabled = false
+
+    ga('create', 'UA-151094528-2', 'auto');
+    ga('send', 'pageview');
     return 0
 }
 
