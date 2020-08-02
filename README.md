@@ -12,6 +12,6 @@ The Performance of Version 0.2 is much better than version 0.1 and the correct r
 
 ## Installation
 
-1. Go to Release to download the latest version `.crx` file and drag it in Chrome to install.
+1. Search it in Google Webstore [Here!](https://chrome.google.com/webstore/detail/sysu-cas-captcha-autofill/ipdlibcadfhbodhagdjdcaebnlgbjoko?utm_source=chrome-ntp-icon)
 
-2. Search it in Google Webstore (***Not yet***)
+2. Go to Release page to download the latest version `.crx` file and drag it in Chrome to install.
