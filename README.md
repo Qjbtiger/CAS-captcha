@@ -6,7 +6,7 @@ This is a Chrome Extension to auto fill captcha when logining SYSU CAS website.
 
 ## Performance
 
-At the monment, we have update the model into CNN model (onnx is not support for most RNN operators), which has a near 99.91% accuarancy. The size of the model is only 6MB and cost less than 500ms to predict. 
+At the monment, we have update the model into CNN model (onnx is not support for most RNN operators), which has a near 99.76% accuarancy. The size of the model is less than 1MB and cost less than 500ms to predict. 
 
 ## Installation
 
