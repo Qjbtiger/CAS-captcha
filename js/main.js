@@ -5,20 +5,9 @@ $(document).ready(function() {
 async function main() {
     console.log('Captcha recognization Script Start!');
 
-    // get debug setting
-    var isDebug = false
-    await new Promise((resolve, reject) => {
-        chrome.storage.local.get("debug", function(obj) {
-            if (Object.keys(obj).length == 0) {
-                chrome.storage.local.set({ "debug": false })
-                isDebug = false
-            } else {
-                isDebug = obj["debug"]
-            }
-
-            resolve()
-        })
-    })
+    var storageName = ['debug', 'autoClickSubmitButton']
+    var defaultValues = [false, false]
+    var config = await getConfigs(storageName, defaultValues)
 
     var captcha = document.getElementById('captchaImg')
     var canvas = document.createElement("canvas")
@@ -29,7 +18,7 @@ async function main() {
     var imgData = context.getImageData(0, 0, canvas.width, canvas.height).data
 
     var imgArray = convert2Array(imgData, 90, 32)
-    printImg(imgArray, 3, 90, 32, 'image', isDebug)
+    printImg(imgArray, 3, 90, 32, 'image', config['debug'])
 
     console.time('Predict')
     var strs = await recognize(imgArray)
@@ -38,16 +27,40 @@ async function main() {
     console.log('Captcha recognization Complete!')
 
     // fill the values
-    captchaForm = document.getElementById('captcha')
+    var captchaForm = document.getElementById('captcha')
     captchaForm.value = strs
 
     // let the submit button enable
-    submitButton = document.getElementsByName('submit')[0]
+    var submitButton = document.getElementsByName('submit')[0]
     submitButton.disabled = false
 
+    //click the submit button
+    // if (config['autoClickSubmitButton']) {
+    //     submitButton.click()
+    // }
+
+    // google analytics
     ga('create', 'UA-151094528-2', 'auto');
     ga('send', 'pageview');
-    return 0
+}
+
+async function getConfigs(storageName, defaultValues) {
+    config = {}
+    await new Promise((resolve, reject) => {
+        for (let i = 0; i != storageName.length; ++i) {
+            chrome.storage.local.get(storageName[i], function (obj) {
+                if (Object.keys(obj).length == 0) {
+                    chrome.storage.local.set({[storageName[i]]: defaultValues[i]})
+                    config[storageName[i]] = defaultValues[i]
+                } else {
+                    config[storageName[i]] = obj[storageName[i]]
+                }
+
+                resolve()
+            })
+        }
+    })
+    return config
 }
 
 function printImg(imgArray, channel,  width, height, name = 'None', isDebug = false) {
@@ -113,9 +126,9 @@ async function recognize(imgArray) {
 
     var input = [new onnx.Tensor(imgArray.flat(2), 'float32', [1, 3, width, height])]
 
-    output = await myOnnxSession.run(input)
+    var output = await myOnnxSession.run(input)
 
-    outputData = output.values().next().value.data
+    var outputData = output.values().next().value.data
 
     for (var t = 0; t != 4; ++t) {
         ans = outputData.indexOf(Math.max.apply(null, outputData.slice(t*36, (t+1)*36))) - t*36

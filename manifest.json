@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "SYSU CAS Captcha Autofill",
-    "version": "1.0",
+    "version": "1.1",
     "description": "This is a Chrome Extention for recognizing and filling the captcha in SYSU CAS website",
     "icons":
     {
