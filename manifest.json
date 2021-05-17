@@ -13,7 +13,7 @@
     "content_scripts":
     [
         {
-            "matches": ["https://cas.sysu.edu.cn/*"],
+            "matches": ["https://cas.sysu.edu.cn/cas/login*"],
             "js": ["js/jquery-3.4.1.min.js", "js/onnx.min.js", "js/analytics.js", "js/main.js"],
             "run_at": "document_start",
             "all_frame": true
