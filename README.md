@@ -1,5 +1,7 @@
 # CAS-captcha
 
+中山大学（Sun Yat-sen University, SYSU）许多门户网站（包括教务系统、邮箱等等）均需通过Cas（中央身份验证服务）进行登录，本Chrome插件用于自动识别、填写登录页面中的验证码，配合Chrome浏览器自带的账户密码记住功能，使用将会更加方便。
+
 This is a Chrome Extension to auto fill captcha when logining SYSU CAS website. 
 
 [Try it now!](https://cas.sysu.edu.cn/cas/login)
