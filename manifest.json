@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "SYSU CAS Captcha Autofill",
-    "version": "1.1",
+    "version": "1.1.1",
     "description": "This is a Chrome Extention for recognizing and filling the captcha in SYSU CAS website",
     "icons":
     {
@@ -13,7 +13,7 @@
     "content_scripts":
     [
         {
-            "matches": ["https://cas.sysu.edu.cn/cas/login*"],
+            "matches": ["https://cas.sysu.edu.cn/cas/login*", "https://cas-443.webvpn.sysu.edu.cn/cas/login*"],
             "js": ["js/jquery-3.4.1.min.js", "js/onnx.min.js", "js/analytics.js", "js/main.js"],
             "run_at": "document_start",
             "all_frame": true
